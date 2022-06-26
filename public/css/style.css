@@ -1,0 +1,26 @@
+/* global styles */
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+};
+
+body {
+	background-color: #f6f6f6;
+};
+
+/* form styles */
+form {
+	max-width: 350px;
+	padding: 10px;
+	background-color: coral;
+};
+
+form div {
+	width: 100%;
+};
+
+form div input, button, textarea {
+	padding: 10px;
+	width: 100%;
+};
