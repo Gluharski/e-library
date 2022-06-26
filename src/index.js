@@ -6,6 +6,7 @@ const app = express();
 
 const booksController = require('./controllers/books');
 const Book = require('./model/Book');
+const dataService = require('./services/dataService');
 
 const url = 'mongodb://localhost:27017/books';
 mongoose.connect(url)
@@ -39,22 +40,35 @@ app.get('/create', (req, res) => {
 
 app.post('/create', async (req, res) => {
 	// create new Book
-	const book = new Book({
+	const createdBook = new Book({
 		title: req.body.title,
 		author: req.body.author,
 		description: req.body.description
 	})
 
-	const savedBook = await book.save();
-	console.log(savedBook);
-	
+	await createdBook.save();
+
 	res.redirect('/books');
 });
 
 app.get('/books/:id', async (req, res) => {
-	const book = await Book.findOne({ _id: req.params.id }).lean();
+	const book = await Book.findById({ _id: req.params.id }).lean();
 
 	res.render('details', { book });
+});
+
+app.get('/about', (req, res) => {
+	res.render('about');
+});
+
+// delete book
+app.get('/delete/:id', async (req, res) => {
+	try {
+		await dataService.deleteBook(req.params.id);
+		res.redirect('/books');
+	} catch (error) {
+		res.status(404).send({ error: 'You cannot delete this book!' });
+	}
 });
 
 app.listen(5000, console.log('Server is listening on port 5000'));

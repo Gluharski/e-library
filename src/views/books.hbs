@@ -1,15 +1,7 @@
 <h2>List of our books:</h2>
-
-<form action="">
-	<input type="text">
-	<button>
-		search
-	</button>
-</form>
-
 {{#if books}}
-	{{#each books}}
 		<ul>
+	{{#each books}}
 			<li class="list-item">
 				{{title}}
 				<br>
@@ -18,9 +10,10 @@
 				{{description}}
 				<br>
 				<a href="/books/{{_id}}">Details</a>
+				<a href="/delete/{{_id}}">Delete</a>
 			</li>
-		</ul>
 	{{/each}}
+		</ul>
 	{{else}}
-	<p>There is no added books yet</p>
+	<p>There is no reviews yet but you can create your first book review <a href="/create">here</a>.</p>
 {{/if}}
