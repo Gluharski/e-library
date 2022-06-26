@@ -1,10 +1,23 @@
 <h2>List of our books:</h2>
 
+<form action="">
+	<input type="text">
+	<button>
+		search
+	</button>
+</form>
+
 {{#if books}}
 	{{#each books}}
 		<ul>
-			<li>
-				{{title}},{{author}},{{description}}
+			<li class="list-item">
+				{{title}}
+				<br>
+				{{author}}
+				<br>
+				{{description}}
+				<br>
+				<a href="/books/{{_id}}">Details</a>
 			</li>
 		</ul>
 	{{/each}}
