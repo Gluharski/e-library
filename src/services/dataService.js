@@ -1,6 +1,6 @@
 const Books = require('../model/Book');
 
-// update
-// exports.updateBook = () => Books.updateOne({})
-
-exports.deleteBook = (id) => Books.findByIdAndDelete(id); // method ot mongoose model
+exports.editBook = (id, data) => Books.updateOne({ _id: id }, {$set: data});
+exports.updateBook = (id, data) => Books.updateOne({_id: id}, {$set: data});
+exports.deleteBook = (id) => Books.findByIdAndDelete(id);
+exports.getOne = (id) => Books.findById(id).lean();

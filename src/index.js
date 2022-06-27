@@ -61,13 +61,40 @@ app.get('/about', (req, res) => {
 	res.render('about');
 });
 
-// delete book
 app.get('/delete/:id', async (req, res) => {
 	try {
 		await dataService.deleteBook(req.params.id);
 		res.redirect('/books');
 	} catch (error) {
 		res.status(404).send({ error: 'You cannot delete this book!' });
+	}
+});
+
+app.get('/edit', (req, res) => {
+	res.render('edit');
+});
+
+// TODO: Fix edit router and functionality
+app.get('/edit/:id', async (req, res) => {
+	try {
+		const data = await dataService.getOne(req.params.id);
+		// console.log(data);
+
+		res.render('edit', { title: "Edit Page", ...data });
+	} catch (error) {
+		res.status(404).send({error: '404 Page'});
+	}
+});
+
+app.post('/edit/:id', async (req, res) => {
+	const id = req.params.id;
+	const data = req.body;
+
+	try {
+		await dataService.editBook(id, data);
+		res.redirect(`/books/${id}`);
+	} catch (error) {
+		res.render('edit', { title: "Edit Page", ...req.body });
 	}
 });
 

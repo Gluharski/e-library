@@ -1,3 +1,28 @@
 body {
 	background-color: #f6f6f6;
 }
+
+.list-item {
+	padding: 10px;
+}
+
+.delete-button {
+	padding: 10px;
+	background-color: red;
+	color: white;
+	border-radius: 5px;
+}
+
+.details-button {
+	padding: 10px;
+	color: white;
+	background-color: green;
+	border-radius: 5px;
+}
+
+.edit-button {
+	padding: 10px;
+	background-color: blue;
+	color: white;
+	border-radius: 5px;
+}
